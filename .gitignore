@@ -61,6 +61,6 @@ run*
 
 *__pycache__*
 
-dino-results*
+dinov-results*
 
-data/aerial-seabirds-west-africa/aerial-seabirds-west-africa
+data/aerial-seabirds-west-africa/aerial-seabirds-west-africa/*
