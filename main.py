@@ -8,7 +8,7 @@ import numpy as np
 import torch
 import timm
 from config import COUNTR_MODEL_PATH, DEFAULT_DEVICE, COUNTR_LIB_PATH, DEFAULT_EVAL_JSON
-from utils import load_image, run_one_image
+from ddg_utils import load_image, run_one_image
 
 # Ensure timm version compatibility
 assert "0.4.5" <= timm.__version__ <= "0.4.9", "timm version must be between 0.4.5 and 0.4.9"
@@ -24,6 +24,7 @@ def parse_option():
     parser.add_argument("--ckpt", default=COUNTR_MODEL_PATH, help="Path to the checkpoint file.")
     parser.add_argument("--device", default=DEFAULT_DEVICE, help="Device for computation.")
     parser.add_argument("--input", default="eval", help="Run mode: single image or evaluation.")
+    parser.add_argument("--json", default=DEFAULT_EVAL_JSON, help="Path to evaluation JSON")
     parser.add_argument("--boxes", default=None, help="Bounding boxes in [[[x1,y1],[x2,y2]],...] format for single image mode.")
     parser.add_argument("--results_path", default="run", help="Path for saving results.")
     return parser.parse_args()
@@ -45,14 +46,16 @@ def main():
     formatted_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     results = []
 
+    num_boxes = []
     if args.input == "eval":  # Evaluation mode
-        with open(DEFAULT_EVAL_JSON, "r") as file:
+        with open(args.json, "r") as file:
             data = json.load(file)
         for key, value in data.items():
             if value:
                 print(key)
-                im_path = os.path.join("data", "images", key)
+                im_path = os.path.join("data", "aerial-seabirds-west-africa", "images", key)
                 samples, boxes, pos = load_image(im_path, value)
+                num_boxes.append(len(boxes))
                 samples, boxes = samples.unsqueeze(0).to(device), boxes.unsqueeze(0).to(device)
                 result, elapsed_time, points = run_one_image(samples, boxes, pos, model, os.path.basename(im_path), f"run_{formatted_time}")
                 print(result, elapsed_time.duration)
@@ -71,8 +74,8 @@ def main():
 
     # Save count results
     with open(f"run_{formatted_time}/result.txt", "w") as file:
-        for element, points in zip(results, points):
-            file.write(f"{element}\n")
+        for element, boxes in zip(results,num_boxes):
+            file.write(f"{element},{boxes}\n")
 
 if __name__ == "__main__":
     main()
