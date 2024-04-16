@@ -1,0 +1,40 @@
+{
+    "classes": [
+        "bird"
+    ],
+    "points": {
+    },
+    "colors": {
+        "bird": [
+            0,
+            0,
+            0
+        ]
+    },
+    "metadata": {
+        "survey_id": "",
+        "coordinates": {}
+    },
+    "custom_fields": {
+        "fields": [],
+        "data": {}
+    },
+    "ui": {
+        "grid": {
+            "size": 200,
+            "color": [
+                255,
+                255,
+                255
+            ]
+        },
+        "point": {
+            "radius": 10,
+            "color": [
+                255,
+                255,
+                0
+            ]
+        }
+    }
+}

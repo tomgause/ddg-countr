@@ -3,10 +3,10 @@ import os
 # Paths
 COUNTR_LIB_PATH = "/mnt/c/Users/tomsg/Work/open-source/DotDotGoose/CounTR"
 COUNTR_MODEL_PATH = os.path.join(COUNTR_LIB_PATH, "FSC147.pth")
-BIRDS_PNT_PATH = "/mnt/c/Users/tomsg/Work/open-source/DotDotGoose/datasets/aerial-seabirds-west-africa/image-chunks-jpg/birds_annotated.pnt"
+BIRDS_PNT_PATH = "data/aerial-seabirds-west-africa/aerial-seabirds-west-africa/birds.pnt"
 DINOV_LIB_PATH = "/mnt/c/Users/tomsg/Work/leverege/tpi/core-gap/DINOv"
 DINOV_CKPT_PATH = "/mnt/c/Users/tomsg/Work/leverege/tpi/core-gap/DINOv/model_swinL.pth"
-IMAGE_DIR = "/mnt/c/Users/tomsg/Work/open-source/DotDotGoose/datasets/aerial-seabirds-west-africa/image-chunks-jpg"
+IMAGE_DIR = "data/aerial-seabirds-west-africa/aerial-seabirds-west-africa/image-chunks-jpg"
 
 # Virtual environment activation commands
 ACTIVATE_DINOV = "source /mnt/c/Users/tomsg/Work/leverege/tpi/core-gap/DINOv/dinov/.venv/bin/activate"
@@ -21,8 +21,3 @@ CIRCLE_RADIUS = 15
 COLOR = (255, 255, 255, 128)  # Semi-transparent white
 BOX_THRESHOLD = 1/8
 MAX_COUNT = 1000
-
-e = """
-dinov venv: source /mnt/c/Users/tomsg/Work/leverege/tpi/core-gap/DINOv/dinov/.venv/bin/activate
-countr venv: source /mnt/c/Users/tomsg/Work/open-source/DotDotGoose/CounTR/.venv/bin/activate
-"""

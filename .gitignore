@@ -59,6 +59,8 @@ local.properties
 
 run*
 
-__pycache__*
+*__pycache__*
 
 dino-results*
+
+data/aerial-seabirds-west-africa/aerial-seabirds-west-africa
